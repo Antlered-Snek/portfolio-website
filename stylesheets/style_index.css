@@ -1,0 +1,121 @@
+:root {
+	--sus: #000000;
+
+	--main: lightblue;
+	--main_gradient: linear-gradient(to bottom right, lightskyblue, paleturquoise);
+	--light: #FFFFFF;
+}
+
+body {
+	font-family: "Helvetica";
+	height: 1000px;
+	margin: 0;
+}
+
+
+/* Header */
+
+header {
+	position: sticky;
+	top: 0;
+
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: var(--main);
+	background-image: var(--main_gradient);
+
+	height: 50px;
+	width: 100vw;
+	margin: 0px;
+	padding: 0px;
+}
+
+	/* Acheievement Bar */
+#achievementBar {
+	display: grid;
+  	grid-template-columns: 1fr;
+  	grid-template-rows: 1fr 1fr 1fr;
+
+  	gap: 20% 0px;
+  	grid-auto-flow: row;
+  	justify-content: start;
+
+    height: 30px;
+    width: 40px;
+    margin: 5px;
+    margin-left: 15px;
+}
+
+#achievementBar div {
+	background-color: var(--light);
+}
+
+	/* Navigation Bar */
+#navbar {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+
+	width: 500px;
+	height: 45px;
+	/*border: 2px solid black;*/
+}
+
+#navbar > a {
+	margin-right: 5vw;
+
+	font-size: 20px;
+	color: var(--light);
+	text-decoration: none;
+}
+
+/* ----------------------------------------------------------------------------------- */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ----------------------------------------------------------------------------------- */
+
+/* Art-Projects */
+
+/*.art-images {
+	background-color: cyan;
+	padding-top: 40px;
+	padding-bottom: 40px;
+
+	display: grid;
+	grid-row-gap: 20px;
+	border: 2px solid black;	 Temporary 
+	grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+}
+
+.art-images img {
+	border-radius: 25px;
+	max-width: 400px;
+	max-height: auto;
+}*/
