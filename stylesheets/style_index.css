@@ -1,32 +1,84 @@
+
+
+
+
+/* Global */
 :root {
 	--sus: #000000;
+	--sus_gradient: linear-gradient(to bottom right, lightskyblue, paleturquoise);
 
-	--main: lightblue;
-	--main_gradient: linear-gradient(to bottom right, lightskyblue, paleturquoise);
+	/*--primary: #0084AA;
+	--secondary: #02BFC5;
+	--tertiary: #E0F7E5;
+	--quaternary: #AAE8DB;
+
 	--light: #FFFFFF;
+	--dark: #02537E;*/
+
+	--primary: #000000;
+	--secondary: #090909;
+	--tertiary: #050505;
+	--quaternary: #010101;
+
+	--light: #FFFFFF;
+	--dark: #000000;
 }
 
 body {
 	font-family: "Helvetica";
-	height: 1000px;
+	height: 4000px;
 	margin: 0;
+	background-color: black;
+	color: white;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+	aspect-ratio: 1 / 1;
+	object-fit: cover;
+}
+
+h2 {
+	font-size: clamp(2rem, 3.1vw + 2rem, 6rem);
+	margin: 3vw;
+	color: white;
+	text-decoration: underline;
+	text-align: center;
+}
+
+h3 {
+	font-size: clamp(1.2rem, 2.1vw + 1.2rem, 4rem);
 }
 
 
 /* Header */
 
 header {
-	position: sticky;
+	position: fixed;
 	top: 0;
+	z-index: 3;
 
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	background-color: var(--main);
-	background-image: var(--main_gradient);
+	/*background-color: var(--primary);*/
+	/*background-image: var(--main_gradient);*/
 
-	height: 50px;
-	width: 100vw;
+	height: 10vh;
+	width: clamp(0px, 100%, 2000px);
+	margin: 0px;
+	padding: 0px;
+}
+
+#header_bg {
+	position: fixed;
+
+	background-color: var(--primary);
+	opacity: 0%;
+
+	height: 10vh;
+	width: clamp(0px, 100%, 2000px);
 	margin: 0px;
 	padding: 0px;
 }
@@ -45,6 +97,8 @@ header {
     width: 40px;
     margin: 5px;
     margin-left: 15px;
+
+    z-index: 4;
 }
 
 #achievementBar div {
@@ -58,9 +112,9 @@ header {
 	justify-content: flex-start;
 	align-items: center;
 
-	width: 500px;
+	width: 700px;
 	height: 45px;
-	/*border: 2px solid black;*/
+	z-index: 4;
 }
 
 #navbar > a {
@@ -73,8 +127,211 @@ header {
 
 /* ----------------------------------------------------------------------------------- */
 
+/* About */
+#about {
+	background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('../images/art-projects/missioncomplete.png');
+	background-size: 100% auto;
+	background-attachment: fixed;
+	margin: 0px;
+	margin-bottom: 8vw;
+}
+
+#profile {
+	display: grid;
+	grid-template-columns: 1fr 1fr; 
+  	grid-template-rows: 1fr 2fr 1fr; 
+  	grid-template-areas: 
+    	"profile-pic	name"
+    	"profile-pic	first-text"
+    	"second-text	second-text";
+
+	justify-content: center;
+	align-items: center;
+
+	margin: clamp(10px, 2.5vw, 50px);
+	margin-top: 0px;
+	padding: 40px;
+	padding-top: 10vh;
+}
+
+#profile-pic {
+	grid-area: profile-pic;
+	display: flex;
+	justify-content: center; 
+}
+
+#profile-pic img {
+	min-width: 10vw;
+	max-width: 25vw;
+	height: auto;
+
+	/*border: 5px solid white;*/
+	border-radius: 50%;
+	transform: rotate(-5deg);
+	/*box-shadow: 10px 15px 10px black;*/
+}
+
+#name {
+	font-size: clamp(16px, 6.5vw, 80px);
+	color: var(--light);
+	text-align: end;
+}
 
 
+#first-text {
+	grid-area: first-text;
+	padding: 1.5em;
+	height: 50%;
+
+	border-radius: 30px;
+	font-size: clamp(12px, 1.5vw, 24px);
+	line-height: 1.6;
+	color: var(--light);
+	background-color: var(--secondary);
+	z-index: 1;
+	/*border: 4px solid white;*/
+}
+
+#second-text {
+	grid-area: second-text;
+
+	/*border: 1px solid black;*/
+	font-size: clamp(14px, 2.5vw, 34px);
+	font-style: italic;
+	color: var(--light);
+	/*background-color: var(--dark);*/
+}
+
+
+/* ----------------------------------------------------------------------------------- */
+
+
+/* Education */
+#education li {
+	 position: relative;
+	 height: 30vw;
+	 padding-top: 1vw;
+	 margin-bottom: 2vw;
+
+	 font-size: 0px;
+	 color: white;
+}
+
+.school-things {
+	position: relative;
+	display: grid;
+	grid-template-columns: 1fr 3fr;
+	grid-template-rows: 3vw 3vw;
+	grid-template-areas: 
+	"activities 	text1"
+	"achievements	text2";
+	
+	margin-left: 5vw;
+	font-size: clamp(10px, 2vw, 40px);
+}
+
+.school-things:nth-child(1) { grid-area: activities; }
+.school-things:nth-child(2) { grid-area: text1; }
+.school-things:nth-child(3) { grid-area: achievements; }
+.school-things:nth-child(4) { grid-area: text2; }
+
+.gallery {
+	position: absolute;
+	top: 0px;
+	left: -40px; 
+	margin: 0px;
+	display: flex;
+	gap: 0px;
+
+	overflow: scroll;
+	touch-action: none;
+	z-index: -1;
+}
+
+.gallery::-webkit-scrollbar {
+	display: none;
+}
+
+.gallery img {
+	position: relative;
+	filter: brightness(70%);
+	height: 30vw;
+}
+
+/* ----------------------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------------------- */
+
+/* Responsive Adjustments */
+@media (max-width: 780px) {
+	/*Global*/
+
+	/* About */
+	#about {
+		background-size: auto 100%;
+	}
+
+	#profile {
+		grid-template-columns: 1fr; 
+  		grid-template-rows: 4fr 1fr 2fr 1fr; 
+  		grid-template-areas: 
+    		"profile-pic"
+    		"name"
+    		"first-text"
+    		"second-text";
+
+    	padding-left: clamp(10px, 1vw, 20px);
+    	padding-right: clamp(10px, 1vw, 20px);
+    }
+
+    #profile-pic img {
+    	min-width: 40vw; 
+    	max-width: 50vw;
+    	height: auto;
+    	margin-bottom: clamp(20px, 2vw, 30px);
+    }
+
+    #name {
+    	text-align: center;
+    	font-size: clamp(10px, 8vw, 80px);
+    }
+
+    #first-text {
+    	text-align: center;
+    	font-size: clamp(4px, 2.7vw, 80px);
+    	border-radius: 24px;
+    }
+
+    #second-text {
+    	text-align: center;
+    	font-size : clamp(10px, 3.3vw, 80px);
+    }
+
+    /* Education */
+    #education li {
+    	height: 95vw;
+    }
+
+    #education h3 span {
+    	content: "\a";
+    	white-space: pre;
+    }
+
+    .school-things {
+		grid-template-columns: 1fr 1fr;
+		grid-template-rows: 1fr 3fr;
+		grid-template-areas: 
+		"activities achievements"
+		"text1		text2";
+	
+		margin-left: 0px;
+		font-size: clamp(20px, 4vw, 40px);
+	}
+
+    .gallery img {
+    	width: 95vw;
+    	height: auto;
+    }
+}
 
 
 
