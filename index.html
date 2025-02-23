@@ -8,19 +8,34 @@
     <link rel="stylesheet" type="text/css" href='stylesheets/style_index.css'>
 </head>
 <body>
-	<header id="header">
+	<header id="header">												<!-- Header -->
 		<div id="header_bg"></div>
-
-		<div id="achievementBar">
-  			<div></div>		<div></div>		<div></div>
-		</div>
 
 		<nav id="navbar">
 			<a href="#about">About</a>
 			<a href="#education">Education</a>
 			<a href="#career-interests">Career Interests</a>
 			<a href="#projects">Projects</a>
+			<a onclick="togglePear()">Pearto</a>
 		</nav>
+
+		<div id="hambar">
+  			<div></div>		<div></div>		<div></div>
+		</div>
+
+		<nav id="mobile_navbar">
+			<a href="#about">About</a>
+			<a href="#education">Education</a>
+			<a href="#career-interests">Career Interests</a>
+			<a href="#projects">Projects</a>
+			<a onclick="togglePear()">Pearto</a>
+		</nav>
+
+		<div id="pearto" onclick="pearto.timer = 0;">
+			<img src="images/tetos/1.png">
+		</div>
+
+
 	</header>
 	
 
@@ -35,7 +50,7 @@
 		</div>
 	</section>
 
-	<section id="education">											<!-- Education -->
+	<section id="education" class="container">							<!-- Education -->
 		<h2>Education</h2>
 		<ul>
 			<li>
@@ -53,10 +68,10 @@
 				</div>
 			</li>
 			<li>
-				<h3>SMP Bunda Hati Kudus <span>2019 - 2022</span></h3>
+				<h3>SMA Mutiara Bangsa 2 <span>2022 - 2025</span></h3>
 				<div class="school-things" >
-					<p>Activities</p><p>KIR (Kelompok Ilmiah Remaja), Pramuka</p>
-					<p>Achievements</p><p>Consistently highest in Math, Physics, and English</p>
+					<p>Activities</p><p>GWZ Webinar, English Book Club, Web Design, Pramuka</p>
+					<p>Achievements</p><p>Published 2 videogames in under a year, created a Matric calculator in Python</p>
 				</div>
 				<div class="gallery">
 					<img src="images/SMA-MB2/1.jpg">
@@ -69,9 +84,32 @@
 		</ul>
 	</section>
 
-	<section id="career-interests">skibidi</section>					<!-- Career Interests -->
+	<section id="career-interests" class="container">					<!-- Career Interests -->
+		<h2>Career Interests</h2>
+		<div id="interests">
+			<div>
+				<h3>Robotics Engineer</h3>
+				<img src="images/robotics-engineer.jpg">
+				<p>I aspire to contribute to robotics research and development</p>
+			</div>
+			<div>
+				<h3>Story Writer</h3>
+				<img src="images/story-writer.webp">
+				<p>I like writing science fiction in my free time, especially hard sci fi</p>
+			</div>
+			<div>
+				<h3>Mechanical Designer</h3>
+				<img src="images/mechanical-designer.jpeg">
+				<p>I like drawing vehicles and mechanical detail for scifi art and illustrations</p>
+			</div>
+		</div>
+	</section>
 
-	<section id="projects">skibidi</section>							<!-- Projects -->
+	<section id="projects" class="container">							<!-- Projects -->
+		<h2>Projects</h2>
+		<a href="pages/art-projects.html">Art Projects</a>
+		<a href="pages/programming.html">Programming</a>
+	</section>
 		<!--
 		<h1>Art Projects</h1>
 		<ul>
@@ -90,8 +128,6 @@
 		</ul>
 		-->
 	</section>
-
-	<section id="code-projects">skibidi</section>				<!-- Code Projects -->
 	<script src="scripts/main.js"></script>
 </body>
 </html>
