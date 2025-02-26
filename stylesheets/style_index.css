@@ -28,7 +28,6 @@ html { scroll-behavior: smooth; }
 
 body {
 	font-family: "Helvetica";
-	height: 4000px;
 	margin: 0;
 	background-color: black;
 	color: white;
@@ -83,7 +82,7 @@ header {
 	padding: 0px;
 }
 
-#header_bg {
+header > .header_bg {
 	position: fixed;
 
 	background-color: var(--primary);
@@ -93,6 +92,8 @@ header {
 	width: clamp(0px, 100%, 2000px);
 	margin: 0px;
 	padding: 0px;
+
+	border-bottom: 2px solid white;
 }
 
 	/* Navigation Bar */
@@ -109,10 +110,111 @@ header {
 	margin-right: auto;
 }
 
-#navbar > a {
+#navbar > div {
+	height: 100%;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-radius: 10px;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	transition: background-color 300ms ease-in-out;
+}
+
+#navbar > div:hover { background-color: rgba(255, 255, 255, 0.8); }
+
+#navbar > div > a {
 	font-size: 20px;
 	color: var(--light);
 	text-decoration: none;
+
+	transition: color 500ms ease-in-out;
+}
+
+#navbar > div:hover > a { color: black; }
+
+
+		/* Projects Dropdown */
+#projects { 
+	position: relative;
+	width: 130px;
+}
+
+.dropdown-trigger {
+	font-size: 20px;
+	color: var(--light);
+	text-decoration: none;
+	transition: color 500ms ease-in-out;
+}
+
+#projects:hover .dropdown-trigger {
+	color: black;
+}
+
+#projects .dropdown-menu {
+	position: absolute;
+	top: 50px;
+	left: -10px;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	overflow: hidden;
+
+	width: 170px;
+	height: 280px;
+}
+
+#projects .dropdown-menu div:not(.header_bg) {
+	position: relative;
+	left: 10px;
+
+	width: 130px;
+	height: 45px;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-radius: 10px;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	transition: background-color 300ms ease-in-out;
+}
+
+#projects .dropdown-menu div:not(.header_bg):hover { background-color: rgba(255, 255, 255, 0.8); }
+
+#projects .dropdown-menu div:not(.header_bg) a {
+	font-size: 20px;
+	color: var(--light);
+	text-decoration: none;
+
+	vertical-align: middle;
+
+	transition: color 500ms ease-in-out;
+}
+
+#projects .dropdown-menu div:not(.header_bg):hover a { color: black; }
+
+
+
+#projects .header_bg {
+	position: fixed;
+
+	background-color: rgb(20, 20, 20);
+	border-bottom: 2px solid white;
+	border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 10px;
+	opacity: 0%;
+
+	width: 150px;
+	height: 290px;
+
+	/*top: 10vh;*/
+	margin: 0px;
+	padding-left: 20px;
+
+	z-index: -1;
 }
 
 
@@ -160,72 +262,6 @@ header {
 	0% { transform: scale(-1, 1);	bottom: -1em; }
 	100% { transform: scale(1, 1);	bottom: -1em; }
 }
-
-/*@keyframes jump-left {
-	0% {
-		bottom: -1rem;
-		transform: scale(1, 1);
-	}
-	10% {
-		bottom: -1rem;
-		transform: rotate(-30deg);
-	}
-	12% {
-		transform: rotate(-30deg);
-	}
-	20% {
-		transform: rotate(0deg);
-	}
-	50% {
-		bottom: 5rem;
-		transform: rotate(45deg);
-	}
-	57% {
-		bottom: 4.9rem;
-		transform: rotate(45deg);
-	}
-	80% {
-		bottom: 3rem;
-		transform: rotate(35deg);
-	}
-	100% {
-		bottom: -1rem;
-		transform: scale(1, 1);
-	}
-}*/
-
-/*@keyframes jump-right {
-	0% {
-		bottom: -1rem;
-		transform: scale(-1, 1);
-	}
-	10% {
-		bottom: -1rem;
-		transform: rotate(30deg) scale(-1, 1);
-	}
-	12% {
-		transform: rotate(30deg) scale(-1, 1);
-	}
-	20% {
-		transform: rotate(0deg) scale(-1, 1);
-	}
-	50% {
-		bottom: 5rem;
-		transform: rotate(-45deg) scale(-1, 1);
-	}
-	57% {
-		bottom: 4.9rem;
-		transform: rotate(-45deg) scale(-1, 1);
-	}
-	80% {
-		bottom: 3rem;
-		transform: rotate(-35deg) scale(-1, 1);
-	}
-	100% {
-		bottom: -1rem;
-		transform: scale(-1, 1);
-	}
-}*/
 
 @keyframes jump-left {
 	0% {
@@ -354,12 +390,16 @@ header {
 }
 
 #profile-pic {
+	position: relative;
+
 	grid-area: profile-pic;
 	display: flex;
 	justify-content: center; 
 }
 
 #profile-pic img {
+	position: relative;
+
 	min-width: 10vw;
 	max-width: 25vw;
 	height: auto;
@@ -371,6 +411,8 @@ header {
 }
 
 #name {
+	position: relative;
+
 	font-size: clamp(16px, 6.5vw, 80px);
 	color: var(--light);
 	text-align: end;
@@ -378,6 +420,8 @@ header {
 
 
 #first-text {
+	position: relative;
+
 	grid-area: first-text;
 	padding: 1.5em;
 	height: 50%;
@@ -392,6 +436,8 @@ header {
 }
 
 #second-text {
+	position: relative;
+
 	grid-area: second-text;
 
 	/*border: 1px solid black;*/
@@ -486,55 +532,54 @@ header {
 	text-align: center;
 
 	width: 100%;
-	height: clamp(260px, 22vw + 12em, 520px);
+	height: clamp(500px, 50vh + 16em, 1000px);
 }
 
 #interests div {
+	overflow: hidden;
 	position: relative;
 	border: 2px solid white;
 	border-radius: 20px;
 	box-shadow: 0px 0px 0px white;
 	width: 90%;
-	height: clamp(220px, 60vh + 10em, 380px);
+	height: clamp(500px, 50vh + 16em, 700px);
+
+	display: grid;
+	grid-template-rows: 1fr 3fr 2fr;
+	grid-template-columns: 1fr; 
 
 	transition: box-shadow 300ms ease-in-out, width 300ms ease-in-out, height 300ms ease-in-out;
 }
 
 #interests div:hover {
 	box-shadow: 0px 0px 20px white;
-	width: 100%;
-	height: clamp(200px, 20vw + 10em, 480px);
 } 
 
 #interests div h3 {
+	margin-top: auto;
+	margin-bottom: auto;
 	font-size: clamp(1rem, 1vw + 1rem, 4rem);
 	transition: font-size 300ms ease-in-out;
 }
 
-#interests div:hover h3 {
-	font-size: clamp(1.2rem, 1.1vw + 1.2rem, 4.1rem);
-}
-
 #interests div p {
-	width: clamp(200px, 10vw + 4rem, 300px);
+	margin-top: auto;
+	margin-bottom: auto;
+	width: 60%;
+	font-size: 140%;
 	margin-left: auto;
 	margin-right: auto;
 	transition: font-size 300ms ease-in-out, width 300ms ease-in-out;
 }
 
-#interests div:hover p {
-	font-size: clamp(0.5rem, 0.7vw + 0.6rem, 2rem);
-	width: 400px;
-}
-
 #interests div img {
-	width: 40%;
+	margin-top: auto;
+	margin-bottom: auto;
+	width: 100%;
 	height: auto;
+	margin-left: auto;
+	margin-right: auto;
 	transition: width 300ms ease-in-out;
-}
-
-#interests div:hover img {
-	width: 50%;
 }
 
 
@@ -594,13 +639,95 @@ header {
 		transition: right 300ms;
 	}
 
-	#mobile_navbar > a {
+	#mobile_navbar > div {
 		margin-bottom: 60px;
-
 		text-align: end;
+	}
+
+	#mobile_navbar > div > a {
 		font-size: 30px;
 		color: var(--light);
 		text-decoration: none;
+	}
+
+	.dropdown-trigger {
+		font-size: 30px;
+		text-align: end;
+	}
+
+			/* Mobile Projects Dropdown */
+	#mobile_projects { 
+		position: relative;
+		width: 130px;
+	}
+
+	#mobile_projects:hover .dropdown-trigger {
+		color: black;
+	}
+
+	#mobile_projects .dropdown-menu {
+		position: absolute;
+		top: 0px;
+		right: 170px;
+
+		display: flex;
+		flex-direction: column;
+		justify-content: space-around;
+		overflow: hidden;
+
+		width: 170px;
+		height: 280px;
+	}
+
+	#mobile_projects .dropdown-menu div:not(.header_bg) {
+		position: relative;
+		left: 10px;
+
+		width: 130px;
+		height: 45px;
+		padding-left: 10px;
+		padding-right: 10px;
+		border-radius: 10px;
+
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		transition: background-color 300ms ease-in-out;
+	}
+
+	#mobile_projects .dropdown-menu div:not(.header_bg):hover { background-color: rgba(255, 255, 255, 0.8); }
+
+	#mobile_projects .dropdown-menu div:not(.header_bg) a {
+		font-size: 20px;
+		color: var(--light);
+		text-decoration: none;
+
+		vertical-align: middle;
+
+		transition: color 500ms ease-in-out;
+	}
+
+	#mobile_projects .dropdown-menu div:not(.header_bg):hover a { color: black; }
+
+
+
+	#mobile_projects .header_bg {
+		position: fixed;
+
+		background-color: rgb(20, 20, 20);
+		border-left: 2px solid white;
+		border-top-left-radius: 10px;
+		border-bottom-left-radius: 10px;
+		opacity: 0%;
+
+		width: 150px;
+		height: 290px;
+
+		/*top: 10vh;*/
+		margin: 0px;
+		padding-left: 20px;
+
+		z-index: -1;
 	}
 
 
@@ -675,17 +802,22 @@ header {
     #interests {
 		grid-template-columns: 2fr;
 		grid-template-rows: 1fr 1fr 1fr;
-		height: 1300px;
+		height: clamp(2000px, 800vw + 10em, 2200px);
 	}
 
 	#interests div {
 		height: clamp(200px, 80vw + 10em, 880px);
+		padding: auto;
 		width: 80%;
+	}
+
+	#interests div:hover {
+		height: clamp(200px, 80vw + 10em, 880px);
 	}
 
 
 	#interests div h3 {
-		font-size: clamp(1.2rem, 3vw + 1.2rem, 1.5rem);
+		font-size: clamp(1.2rem, 2.5vw + 1.8rem, 2rem);
 	}
 
 	#interests div p {
@@ -694,7 +826,7 @@ header {
 	}
 
 	#interests div img {
-		width: 40%;
+		width: 100%;
 	}
 }
 
@@ -709,7 +841,12 @@ header {
 
 
 
-
+/*@media (min-width: 475px) 	{ .container {max-width: 475px;} }
+@media (min-width: 640px) 	{ .container {max-width: 640px;} }
+@media (min-width: 768px) 	{ .container {max-width: 768px;} }
+@media (min-width: 1024px) 	{ .container {max-width: 1024px;} }
+@media (min-width: 1280px) 	{ .container {max-width: 1280px;} }
+@media (min-width: 1536px) 	{ .container {max-width: 1536px;} }*/
 
 
 

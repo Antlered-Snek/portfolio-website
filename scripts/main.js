@@ -4,9 +4,28 @@
 
 // HTML Elements
 	// Header
-let header_bg = document.getElementById("header_bg");
+let header_bg = document.getElementsByClassName("header_bg");
 let hambar = document.getElementById("hambar");
 let mobil_navbar = document.getElementById("mobil_navbar"); mobile_navbar.style.right = "-12em";
+
+		// Dropdown Menu
+let dropdown_triggers = document.getElementsByClassName("dropdown-trigger");
+let dropdown_menus = document.getElementsByClassName("dropdown-menu");
+dropdown_menus[0].style.height = "0px";
+dropdown_menus[0].getElementsByClassName("header_bg")[0].style.height = "0px";
+
+dropdown_menus[1].style.width = "0px";
+dropdown_menus[1].getElementsByClassName("header_bg")[0].style.width = "0px";
+
+let dropdown_stats = {
+	current_length: 0,
+	speed: 10,
+	new_length: 0,
+	bg_extra_length: 0,
+	index: 0,
+	isHeight: true,
+	isDropdowning: false
+};
 
 	// About
 let profile_pic = document.getElementById("profile-pic");
@@ -67,11 +86,29 @@ function moveGalleries() {
 			gallery.getElementsByTagName('img')[len].remove();
 			gallery.scrollLeft += img_length;
 		}
+	}}
+
+function dropdown() {
+	let e = dropdown_stats;
+
+	// Stop
+	if (e.current_length == e.new_length) e.isDropdowning = false;
+	
+	// Calculate Length
+	e.current_length += e.speed * (     1*(e.current_length < e.new_length)     +     -1*(e.current_length > e.new_length)     );
+
+	// Output
+	if (e.isHeight) {
+		dropdown_menus[e.index].style.height = String(e.current_length) + "px";
+		if (e.current_length>0) dropdown_menus[e.index].getElementsByClassName("header_bg")[0].style.height = String(e.current_length+e.bg_extra_length) + "px";
+		else dropdown_menus[e.index].getElementsByClassName("header_bg")[0].style.height = "0px";
 	}
-}
 
-
-
+	else {
+		dropdown_menus[e.index].style.width  = String(e.current_length) + "px";
+		if (e.current_length>0) dropdown_menus[e.index].getElementsByClassName("header_bg")[0].style.width = String(e.current_length+e.bg_extra_length) + "px";
+		else dropdown_menus[e.index].getElementsByClassName("header_bg")[0].style.width = "0px";
+	}}
 
 function togglePear() {
 	// Prevent Multi-Click
@@ -90,12 +127,7 @@ function togglePear() {
 	if (pearto.isActive) pearto.src.style.animationDirection = "reverse";
 
 	// Kill Pear
-	else pearto.src.style.animationDirection = "normal";
-}
-
-
-
-
+	else pearto.src.style.animationDirection = "normal";}
 
 function pear() {
 	if (pearto.timer > 0) {			// If timer is going
@@ -181,25 +213,13 @@ function pear() {
 				else if (pearto.direction == -1) pearto.src.style.animationName = "idle-right";
 			}
 		}
-	}
-}
-
-
-
-
+	}}
 
 function resetPearAnimation() {
 	//  Reset Animation
 	pearto.src.style.animationName = 'none';
 	pearto.src.offsetHeight;
-	pearto.src.style.animationName = null;
-}
-
-
-
-
-
-
+	pearto.src.style.animationName = null;}
 
 
 
@@ -208,10 +228,10 @@ function resetPearAnimation() {
 // Animation
 function animate() {
 	moveGalleries();
-	if (pearto.isActive) pear();	
-	requestAnimationFrame(animate);
-}
+	if (dropdown_stats.isDropdowning) dropdown();
+	if (pearto.isActive) pear();
 
+	requestAnimationFrame(animate);}
 requestAnimationFrame(animate);
 
 
@@ -221,28 +241,62 @@ requestAnimationFrame(animate);
 
 
 // Event Listeners
+	// Scroll Function
 document.addEventListener('scroll', (e) => {
 	let scrollStrength = ((window.innerWidth > 780) * 0.002) + ((window.innerWidth <= 780) * 0.0006);
 
 	// Header
-	header_bg.style.opacity = String( window.scrollY * scrollStrength * (1366/window.innerWidth) );
-	if (Number(header_bg.style.opacity) > 1) header.style.opacity = '1.0';
+	for (let i=0; i<header_bg.length; i++) {
+		header_bg[i].style.opacity = String( window.scrollY * scrollStrength * (1366/window.innerWidth) );
+		if (Number(header_bg[i].style.opacity) > 1) header_bg[i].style.opacity = '1.0';
+	}
 
 	// Profile
-	profile_pic.style.marginTop = String(-window.scrollY * 2) +"px";
-	profile_name.style.marginTop = String(-window.scrollY * 0.6) +"px";
-	profile_text2.style.marginTop = String(-window.scrollY * 0.8) +"px";
-})
+	profile_pic.style.top = String(-window.scrollY * 2) +"px";
+	profile_name.style.top = String(-window.scrollY * 0.6) +"px";
+	profile_text2.style.top = String(-window.scrollY * 0.8) +"px";})
 
+	// Hamburger Bar
 hambar.addEventListener('click', (e) => {
 	if (mobile_navbar.style.right == "-12em") mobile_navbar.style.right = "0px";
-	else mobile_navbar.style.right = "-12em";
-})
+	else mobile_navbar.style.right = "-12em";})
 
+	// Dropdown Menus
+		// Desktop
+dropdown_triggers[0].addEventListener('mouseover', (e) => {
+	dropdown_stats.index = 0;
+	dropdown_stats.current_length = Number(dropdown_menus[dropdown_stats.index].style.height.slice(0, dropdown_menus[dropdown_stats.index].style.height.length-2));
+	dropdown_stats.new_length = 280;
+	dropdown_stats.bg_extra_length = 10;
+	dropdown_stats.isHeight = true;
+	dropdown_stats.isDropdowning = true;})
 
+dropdown_triggers[0].addEventListener('mouseout', (e) => {
+	dropdown_stats.index = 0;
+	dropdown_stats.current_length = Number(dropdown_menus[dropdown_stats.index].style.height.slice(0, dropdown_menus[dropdown_stats.index].style.height.length-2));
+	dropdown_stats.new_length = 0;
+	dropdown_stats.bg_extra_length = 10;
+	dropdown_stats.isHeight = true;
+	dropdown_stats.isDropdowning = true;})
 
+		// Mobile
+dropdown_triggers[1].addEventListener('touchstart', (e) => {
+	dropdown_stats.index = 1;
+	dropdown_stats.current_length = Number(dropdown_menus[dropdown_stats.index].style.height.slice(0, dropdown_menus[dropdown_stats.index].style.height.length-2));
+	dropdown_stats.new_length = 170;
+	dropdown_stats.bg_extra_length = 10;
+	dropdown_stats.isHeight = false;
+	dropdown_stats.isDropdowning = true;})
 
+dropdown_triggers[1].addEventListener('touchcancel', (e) => {
+	dropdown_stats.index = 1;
+	dropdown_stats.current_length = Number(dropdown_menus[dropdown_stats.index].style.height.slice(0, dropdown_menus[dropdown_stats.index].style.height.length-2));
+	dropdown_stats.new_length = 0;
+	dropdown_stats.bg_extra_length = 10;
+	dropdown_stats.isHeight = false;
+	dropdown_stats.isDropdowning = true;})
 
+	// Pear Animation End
 pearto.src.addEventListener('animationend', (e) => {
 
 	if (pearto.src.style.animationName == "jump-in-out") {					// Jump-In-Out
@@ -266,8 +320,7 @@ pearto.src.addEventListener('animationend', (e) => {
 	}
 
 	pearto.src.style.animationIterationCount = "infinite";
-	pearto.isSpinning = false;
-})
+	pearto.isSpinning = false;})
 
 
 

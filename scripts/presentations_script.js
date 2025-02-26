@@ -27,8 +27,6 @@ let dropdown_stats = {
 	isDropdowning: false
 };
 
-// let galleries = document.getElementsByClassName("gallery");
-
 	// Pear
 let pearto = {
 		// General
@@ -48,6 +46,11 @@ pearto.src.style.animationIterationCount = "infinite";
 pearto.src.style.animationFillMode = "forwards";
 pearto.src.style.right = "200px";
 
+	// Presentations
+let galleries = document.getElementsByClassName("gallery");
+for (let i=0; i<galleries.length; i++) {
+	galleries[i].scrollLeft += 20;
+}
 
 
 
@@ -57,6 +60,38 @@ pearto.src.style.right = "200px";
 
 
 // Functions
+function moveGalleries_linked() {
+	for (let i=0; i<galleries.length; i++) {
+		let gallery = galleries[i];
+		let len = gallery.getElementsByTagName('a').length;
+
+		let img_length = ( window.innerWidth * 0.3 ) * 16/9;
+		let scrollSpeed = ((window.innerWidth > 780) * 1) + ((window.innerWidth <= 780) * 0.5);
+
+		// Scroll
+		gallery.scrollLeft += scrollSpeed;
+		console.log(gallery.scrollLeft, img_length*len)
+
+			// Reorder
+		if (gallery.scrollLeft >= img_length*len) {
+				// Add Link
+			let newLink = document.createElement('a');
+			newLink.href = gallery.getElementsByTagName('a')[len-1].href;
+
+				// Add Image
+			let newImg = document.createElement('img');
+			newImg.src = gallery.getElementsByTagName('a')[len-1].getElementsByTagName('img')[0].src;
+
+				// Insert Both
+			newLink.appendChild(newImg);
+			gallery.insertBefore(newLink, gallery.getElementsByTagName('a')[0]);
+			
+				// Remove
+			gallery.getElementsByTagName('a')[len].remove();
+			gallery.scrollLeft -= img_length;
+		}
+	}}
+
 function dropdown() {
 	let e = dropdown_stats;
 
@@ -202,6 +237,7 @@ function resetPearAnimation() {
 
 // Animation
 function animate() {
+	moveGalleries_linked();
 	if (pearto.isActive) pear();	
 	if (dropdown_stats.isDropdowning) dropdown();
 
