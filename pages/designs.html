@@ -1,1 +1,133 @@
-designs.html
+<!DOCTYPE html>
+<html>
+<head>
+	<title>My Portfolio</title>
+	<meta charset="utf-8" name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="keywords" content="">
+    <meta name="description" content="Portfolio Website">
+    <link rel="stylesheet" type="text/css" href='../stylesheets/style_designs.css'>
+</head>
+<body>
+	<header id="header">												<!-- Header -->
+		<div class="header_bg"></div>
+
+		<nav id="navbar">
+			<div><a href="../index.html#about">About</a></div>
+			<div><a href="../index.html#education">Education</a></div>
+			<div><a href="../index.html#career-interests">Career Interests</a></div>
+			<div id="projects" class="dropdown-trigger">
+				<span>Projects</span>
+				<div class="dropdown-menu">
+					<div><a href="presentations.html">Presentations</a></div>
+					<div><a href="writing.html">Writing</a></div>
+					<div><a href="designs.html">Designs</a></div>
+
+					<div><a href="art-projects.html">Art Projects</a></div>
+					<div><a href="programming.html">Programming</a></div>
+					<div class="dropdown_bg"></div>
+				</div>
+			</div>
+			<div><a onclick="togglePear()">Pearto</a></div>
+		</nav>
+
+		<div id="hambar">
+  			<div></div>		<div></div>		<div></div>
+		</div>
+
+		<nav id="mobile_navbar">
+			<div><a href="../index.html#about">About</a></div>
+			<div><a href="../index.html#education">Education</a></div>
+			<div><a href="../index.html#career-interests">Career Interests</a></div>
+			<div id="mobile_projects" class="dropdown-trigger">
+				<span>Projects</span>
+				<div class="dropdown-menu">
+					<div><a href="presentations.html">Presentations</a></div>
+					<div><a href="writing.html">Writing</a></div>
+					<div><a href="designs.html">Designs</a></div>
+
+					<div><a href="art-projects.html">Art Projects</a></div>
+					<div><a href="programming.html">Programming</a></div>
+					<div class="dropdown_bg"></div>
+				</div>
+			</div>
+			<div><a onclick="togglePear()">Pearto</a></div>
+		</nav>
+
+		<div id="pearto" onclick="pearto.timer = 0;">
+			<img src="../images/tetos/1.png">
+		</div>
+	</header>
+	
+
+	<section id="about">												<!-- About -->
+		<div id="profile">
+			<div id="profile-pic">
+				<img src="images/profile_cool.jpg">
+			</div>
+			<div id="name"><b>Devin Hewitt</b></div>
+			<div id="first-text"><span><b>A passionate and ambitious worker.<br>Amateur programmer, artist, and web developer.<br>Currently learning basic electrical engineering.</b></span></div>
+			<div id="second-text"><b>I always try my best to exceed expectations in any task.</b></div>
+		</div>
+	</section>
+
+
+	<section id="education" class="container">							<!-- Education -->
+		<h2>Education</h2>
+		<ul>
+			<li>
+				<h3>SMP Bunda Hati Kudus <span>2019 - 2022</span></h3>
+				<div class="school-things" >
+					<p>Activities</p><p>KIR (Kelompok Ilmiah Remaja), Pramuka</p>
+					<p>Achievements</p><p>Consistently highest in Math, Physics, and English</p>
+				</div>
+				<div class="gallery">
+					<img src="images/SMP-BHK/1.jpg">
+					<img src="images/SMP-BHK/2.png">
+					<img src="images/SMP-BHK/3.gif">
+					<img src="images/SMP-BHK/4.jpg">
+					<img src="images/SMP-BHK/5.png">
+				</div>
+			</li>
+			<li>
+				<h3>SMA Mutiara Bangsa 2 <span>2022 - 2025</span></h3>
+				<div class="school-things" >
+					<p>Activities</p><p>GWZ Webinar, English Book Club, Web Design, Pramuka</p>
+					<p>Achievements</p><p>Published 2 videogames in under a year, created a Matric calculator in Python</p>
+				</div>
+				<div class="gallery">
+					<img src="images/SMA-MB2/1.jpg">
+					<img src="images/SMA-MB2/2.webp">
+					<img src="images/SMA-MB2/3.jpg">
+					<img src="images/SMA-MB2/4.webp">
+					<img src="images/SMA-MB2/5.gif">
+				</div>
+			</li>
+		</ul>
+	</section>
+
+
+	<section id="career-interests" class="container">					<!-- Career Interests -->
+		<h2>Career Interests</h2>
+		<div id="interests">
+			<div>
+				<h3>Robotics Engineer</h3>
+				<img src="images/robotics-engineer.jpg">
+				<p>I aspire to contribute to robotics research and development</p>
+			</div>
+			<div>
+				<h3>Story Writer</h3>
+				<img src="images/story-writer.webp">
+				<p>I like writing science fiction in my free time, especially hard sci fi</p>
+			</div>
+			<div>
+				<h3>Mechanical Designer</h3>
+				<img src="images/mechanical-designer.jpeg">
+				<p>I like drawing vehicles and mechanical detail for scifi art and illustrations</p>
+			</div>
+		</div>
+	</section>
+
+
+	<script src="../scripts/designs_script.js"></script>
+</body>
+</html>

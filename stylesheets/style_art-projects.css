@@ -35,9 +35,8 @@ body {
 }
 
 img {
-	max-height: 90dvh;
-	min-height: 35vw;
-	max-width: auto;
+	max-width: 100%;
+	height: auto;
 	aspect-ratio: 1 / 1;
 	object-fit: cover;
 }
@@ -157,6 +156,13 @@ header > .header_bg {
 	width: 130px;
 }
 
+#projects span {
+	cursor: pointer;
+	transition: color 300ms ease-in-out;
+}
+
+#projects:hover span { color: black; }
+
 .dropdown-trigger {
 	font-size: 20px;
 	color: var(--light);
@@ -170,19 +176,28 @@ header > .header_bg {
 
 #projects .dropdown-menu {
 	position: absolute;
-	top: 50px;
+	top: -340px;
 	left: -10px;
 
 	display: flex;
 	flex-direction: column;
 	justify-content: space-around;
 	overflow: hidden;
+	z-index: -1;
+	padding-top: 70px;
 
 	width: 170px;
-	height: 280px;
+	height: 300px;
+	opacity: 0%;
+	transition: top 500ms ease-in-out, opacity 500ms ease-in-out;
 }
 
-#projects .dropdown-menu div:not(.header_bg) {
+#projects:hover .dropdown-menu {		/* Deployed */
+	top: -10px;
+	opacity: 100%;
+}
+
+#projects .dropdown-menu div:not(.dropdown_bg) {
 	position: relative;
 	left: 10px;
 
@@ -198,9 +213,9 @@ header > .header_bg {
 	transition: background-color 300ms ease-in-out;
 }
 
-#projects .dropdown-menu div:not(.header_bg):hover { background-color: rgba(255, 255, 255, 0.8); }
+#projects .dropdown-menu div:not(.dropdown_bg):hover { background-color: rgba(255, 255, 255, 0.8); }
 
-#projects .dropdown-menu div:not(.header_bg) a {
+#projects .dropdown-menu div:not(.dropdown_bg) a {
 	font-size: 20px;
 	color: var(--light);
 	text-decoration: none;
@@ -210,21 +225,20 @@ header > .header_bg {
 	transition: color 500ms ease-in-out;
 }
 
-#projects .dropdown-menu div:not(.header_bg):hover a { color: black; }
+#projects .dropdown-menu div:not(.dropdown_bg):hover a { color: black; }
 
 
 
-#projects .header_bg {
+#projects .dropdown_bg {
 	position: fixed;
 
 	background-color: rgb(20, 20, 20);
 	border-bottom: 2px solid white;
 	border-bottom-right-radius: 10px;
 	border-bottom-left-radius: 10px;
-	opacity: 0%;
 
 	width: 150px;
-	height: 290px;
+	height: 320px;
 
 	/*top: 10vh;*/
 	margin: 0px;
@@ -264,9 +278,6 @@ header > .header_bg {
 	animation-direction: normal;
 	animation-fill-mode: forwards;
 }
-
-/* Art Projects */
-.art-images img { width: 40% }
 
 @keyframes idle-left {		0% { bottom: -1em; }							100% { bottom: -1em; }							} 
 @keyframes idle-right {		0% { transform: scale(-1, 1); bottom: -1em; }	100% { transform: scale(-1, 1); bottom: -1em; }	}
@@ -377,6 +388,10 @@ header > .header_bg {
 	}
 }
 
+/* Art Projects */
+.art-images img { width: 40% }
+
+
 
 
 /* ----------------------------------------------------------------------------------- */
@@ -459,7 +474,8 @@ header > .header_bg {
 			/* Mobile Projects Dropdown */
 	#mobile_projects { 
 		position: relative;
-		width: 130px;
+		text-align: end;
+		width: 160px;
 	}
 
 	#mobile_projects:hover .dropdown-trigger {
@@ -469,18 +485,27 @@ header > .header_bg {
 	#mobile_projects .dropdown-menu {
 		position: absolute;
 		top: 0px;
-		right: 170px;
+		right: 0px;
 
 		display: flex;
 		flex-direction: column;
 		justify-content: space-around;
 		overflow: hidden;
+		z-index: -1;
 
 		width: 170px;
 		height: 280px;
+		opacity: 0%;
+
+		transition: right 500ms ease-in-out, opacity 500ms ease-in-out;
 	}
 
-	#mobile_projects .dropdown-menu div:not(.header_bg) {
+	#mobile_projects:hover .dropdown-menu {
+		right: 160px;
+		opacity: 100%;
+	}
+
+	#mobile_projects .dropdown-menu div:not(.dropdown_bg) {
 		position: relative;
 		left: 10px;
 
@@ -496,9 +521,9 @@ header > .header_bg {
 		transition: background-color 300ms ease-in-out;
 	}
 
-	#mobile_projects .dropdown-menu div:not(.header_bg):hover { background-color: rgba(255, 255, 255, 0.8); }
+	#mobile_projects .dropdown-menu div:not(.dropdown_bg):hover { background-color: rgba(255, 255, 255, 0.8); }
 
-	#mobile_projects .dropdown-menu div:not(.header_bg) a {
+	#mobile_projects .dropdown-menu div:not(.dropdown_bg) a {
 		font-size: 20px;
 		color: var(--light);
 		text-decoration: none;
@@ -508,18 +533,17 @@ header > .header_bg {
 		transition: color 500ms ease-in-out;
 	}
 
-	#mobile_projects .dropdown-menu div:not(.header_bg):hover a { color: black; }
+	#mobile_projects .dropdown-menu div:not(.dropdown_bg):hover a { color: black; }
 
 
 
-	#mobile_projects .header_bg {
+	#mobile_projects .dropdown_bg {
 		position: fixed;
 
 		background-color: rgb(20, 20, 20);
 		border-left: 2px solid white;
 		border-top-left-radius: 10px;
 		border-bottom-left-radius: 10px;
-		opacity: 0%;
 
 		width: 150px;
 		height: 290px;

@@ -3,10 +3,19 @@
 
 
 // HTML Elements
-		// Header
+	// Header
 let header_bg = document.getElementsByClassName("header_bg");
 let hambar = document.getElementById("hambar");
 let mobil_navbar = document.getElementById("mobil_navbar"); mobile_navbar.style.right = "-12em";
+
+	// About
+let profile_pic = document.getElementById("profile-pic");
+let profile_name = document.getElementById("name");
+let profile_text1 = document.getElementById("first-text");
+let profile_text2 = document.getElementById("second-text");
+
+	// Education
+let galleries = document.getElementsByClassName("gallery");
 
 	// Pear
 let pearto = {
@@ -27,9 +36,6 @@ pearto.src.style.animationIterationCount = "infinite";
 pearto.src.style.animationFillMode = "both";
 pearto.src.style.right = "200px";
 
-	// Scroll Function
-let hasScrolled = false;
-
 
 
 
@@ -39,6 +45,30 @@ let hasScrolled = false;
 
 
 // Functions
+function moveGalleries() {
+	for (let i=0; i<galleries.length; i++) {
+		let gallery = galleries[i];
+		let len = 5;
+
+		let img_length = window.innerWidth * ((window.innerWidth > 780) * 0.3 + (window.innerWidth <= 780) * 0.95);
+		let scrollSpeed = ((window.innerWidth > 780) * 1) + ((window.innerWidth <= 780) * 0.5);
+
+		// Scroll
+		gallery.scrollLeft -= scrollSpeed;
+
+			// Reorder
+		if (gallery.scrollLeft <= 0) {
+				// Add
+			let newImg = document.createElement('img');
+			newImg.src = gallery.getElementsByTagName('img')[len-1].src;
+			gallery.insertBefore(newImg, gallery.getElementsByTagName('img')[0]);
+			
+				// Remove
+			gallery.getElementsByTagName('img')[len].remove();
+			gallery.scrollLeft += img_length;
+		}
+	}}
+
 function togglePear() {
 	// Prevent Multi-Click
 	if (pearto.src.style.animationName == "jump-in-out") return;
@@ -153,35 +183,17 @@ function resetPearAnimation() {
 	pearto.src.style.animationIterationCount = "infinite";
 	pearto.src.style.animationFillMode = "both";}
 
-function scrollFunc() {
-	let scrollStrength = ((window.innerWidth > 780) * 0.002) + ((window.innerWidth <= 780) * 0.0006);
-
-	// Header
-	for (let i=0; i<header_bg.length; i++) {
-		header_bg[i].style.opacity = String( window.scrollY * scrollStrength * (1366/window.innerWidth) );
-		if (Number(header_bg[i].style.opacity) > 1) header_bg[i].style.opacity = '1.0';
-	}
-
-	// Stop
-	hasScrolled = false;
-}
-
-
-
-
-
 
 
 
 
 // Animation
 function animate() {
+	moveGalleries();
+	// if (dropdown_stats.isDropdowning) dropdown();
 	if (pearto.isActive) pear();
-	if (hasScrolled) scrollFunc();
 
-	requestAnimationFrame(animate);
-}
-
+	requestAnimationFrame(animate);}
 requestAnimationFrame(animate);
 
 
@@ -192,13 +204,24 @@ requestAnimationFrame(animate);
 
 // Event Listeners
 	// Scroll Function
-document.addEventListener('scroll', (e) => { hasScrolled = true; })
+document.addEventListener('scroll', (e) => {
+	let scrollStrength = ((window.innerWidth > 780) * 0.002) + ((window.innerWidth <= 780) * 0.0006);
+
+	// Header
+	for (let i=0; i<header_bg.length; i++) {
+		header_bg[i].style.opacity = String( window.scrollY * scrollStrength * (1366/window.innerWidth) );
+		if (Number(header_bg[i].style.opacity) > 1) header_bg[i].style.opacity = '1.0';
+	}
+
+	// Profile
+	profile_pic.style.top = String(-window.scrollY * 2) +"px";
+	profile_name.style.top = String(-window.scrollY * 0.6) +"px";
+	profile_text2.style.top = String(-window.scrollY * 0.8) +"px";})
 
 	// Hamburger Bar
 hambar.addEventListener('click', (e) => {
 	if (mobile_navbar.style.right == "-12em") mobile_navbar.style.right = "0px";
-	else mobile_navbar.style.right = "-12em";
-})
+	else mobile_navbar.style.right = "-12em";})
 
 	// Pear Animation End
 pearto.src.addEventListener('animationend', (e) => {

@@ -8,25 +8,6 @@ let header_bg = document.getElementsByClassName("header_bg");
 let hambar = document.getElementById("hambar");
 let mobil_navbar = document.getElementById("mobil_navbar"); mobile_navbar.style.right = "-12em";
 
-		// Dropdown Menu
-let dropdown_triggers = document.getElementsByClassName("dropdown-trigger");
-let dropdown_menus = document.getElementsByClassName("dropdown-menu");
-dropdown_menus[0].style.height = "0px";
-dropdown_menus[0].getElementsByClassName("header_bg")[0].style.height = "0px";
-
-dropdown_menus[1].style.width = "0px";
-dropdown_menus[1].getElementsByClassName("header_bg")[0].style.width = "0px";
-
-let dropdown_stats = {
-	current_length: 0,
-	speed: 10,
-	new_length: 0,
-	bg_extra_length: 0,
-	index: 0,
-	isHeight: true,
-	isDropdowning: false
-};
-
 	// Pear
 let pearto = {
 		// General
@@ -43,14 +24,17 @@ let pearto = {
 }
 pearto.src.style.animationName = "idle-bottom";
 pearto.src.style.animationIterationCount = "infinite";
-pearto.src.style.animationFillMode = "forwards";
+pearto.src.style.animationFillMode = "both";
 pearto.src.style.right = "200px";
 
-	// Presentations
+	// Galleries
 let galleries = document.getElementsByClassName("gallery");
 for (let i=0; i<galleries.length; i++) {
 	galleries[i].scrollLeft += 20;
 }
+
+	// Scroll Function
+let hasScrolled = false;
 
 
 
@@ -65,72 +49,54 @@ function moveGalleries_linked() {
 		let gallery = galleries[i];
 		let len = gallery.getElementsByTagName('a').length;
 
-		let img_length = ( window.innerWidth * 0.3 ) * 16/9;
+		let scrollLeft_old = gallery.scrollLeft;
+		let img_length = 800;
 		let scrollSpeed = ((window.innerWidth > 780) * 1) + ((window.innerWidth <= 780) * 0.5);
 
 		// Scroll
 		gallery.scrollLeft += scrollSpeed;
-		console.log(gallery.scrollLeft, img_length*len)
-
+			
 			// Reorder
-		if (gallery.scrollLeft >= img_length*len) {
+		if ( gallery.scrollLeft < scrollLeft_old+scrollSpeed ) {
 				// Add Link
 			let newLink = document.createElement('a');
-			newLink.href = gallery.getElementsByTagName('a')[len-1].href;
+			newLink.href = gallery.getElementsByTagName('a')[0].href;
+			newLink.target = "_blank";
 
 				// Add Image
 			let newImg = document.createElement('img');
-			newImg.src = gallery.getElementsByTagName('a')[len-1].getElementsByTagName('img')[0].src;
+			newImg.src = gallery.getElementsByTagName('a')[0].getElementsByTagName('img')[0].src;
 
 				// Insert Both
 			newLink.appendChild(newImg);
-			gallery.insertBefore(newLink, gallery.getElementsByTagName('a')[0]);
+			gallery.appendChild(newLink);
 			
 				// Remove
-			gallery.getElementsByTagName('a')[len].remove();
+			gallery.getElementsByTagName('a')[0].remove();
 			gallery.scrollLeft -= img_length;
 		}
-	}}
 
-function dropdown() {
-	let e = dropdown_stats;
-
-	// Stop
-	if (e.current_length == e.new_length) e.isDropdowning = false;
-	
-	// Calculate Length
-	e.current_length += e.speed * (     1*(e.current_length < e.new_length)     +     -1*(e.current_length > e.new_length)     );
-
-	// Output
-	if (e.isHeight) {
-		dropdown_menus[e.index].style.height = String(e.current_length) + "px";
-		if (e.current_length>0) dropdown_menus[e.index].getElementsByClassName("header_bg")[0].style.height = String(e.current_length+e.bg_extra_length) + "px";
-		else dropdown_menus[e.index].getElementsByClassName("header_bg")[0].style.height = "0px";
-	}
-
-	else {
-		dropdown_menus[e.index].style.width  = String(e.current_length) + "px";
-		if (e.current_length>0) dropdown_menus[e.index].getElementsByClassName("header_bg")[0].style.width = String(e.current_length+e.bg_extra_length) + "px";
-		else dropdown_menus[e.index].getElementsByClassName("header_bg")[0].style.width = "0px";
+		if (i == galleries.length-2) console.log(gallery.scrollLeft)
 	}}
 
 function togglePear() {
 	// Prevent Multi-Click
 	if (pearto.src.style.animationName == "jump-in-out") return;
 
+	resetPearAnimation();
 	pearto.isMoving = false;
+	pearto.isSpinning = false;
 	pearto.direction = 1;
 	pearto.timer = 0;
 
 	// General Animation
-	resetPearAnimation();
 	pearto.src.style.animationName = "jump-in-out";
 	pearto.src.style.animationIterationCount = "1";
 
-	// Summon Pear
-	if (pearto.isActive) pearto.src.style.animationDirection = "reverse";
-
 	// Kill Pear
+	if (pearto.isActive) {pearto.src.style.animationDirection = "reverse"; pearto.isActive = false;}
+
+	// Summon Pear
 	else pearto.src.style.animationDirection = "normal";}
 
 function pear() {
@@ -223,9 +189,22 @@ function resetPearAnimation() {
 	//  Reset Animation
 	pearto.src.style.animationName = 'none';
 	pearto.src.offsetHeight;
-	pearto.src.style.animationName = null;}
+	pearto.src.style.animation = null;
+	pearto.src.style.animationIterationCount = "infinite";
+	pearto.src.style.animationFillMode = "both";}
 
+function scrollFunc() {
+	let scrollStrength = ((window.innerWidth > 780) * 0.002) + ((window.innerWidth <= 780) * 0.0006);
 
+	// Header
+	for (let i=0; i<header_bg.length; i++) {
+		header_bg[i].style.opacity = String( window.scrollY * scrollStrength * (1366/window.innerWidth) );
+		if (Number(header_bg[i].style.opacity) > 1) header_bg[i].style.opacity = '1.0';
+	}
+
+	// Stop
+	hasScrolled = false;
+}
 
 
 
@@ -238,8 +217,8 @@ function resetPearAnimation() {
 // Animation
 function animate() {
 	moveGalleries_linked();
-	if (pearto.isActive) pear();	
-	if (dropdown_stats.isDropdowning) dropdown();
+	if (pearto.isActive) pear();
+	if (hasScrolled) scrollFunc();
 
 	requestAnimationFrame(animate);
 }
@@ -254,15 +233,7 @@ requestAnimationFrame(animate);
 
 // Event Listeners
 	// Scroll Function
-document.addEventListener('scroll', (e) => {
-	let scrollStrength = ((window.innerWidth > 780) * 0.002) + ((window.innerWidth <= 780) * 0.0006);
-
-	// Header
-	for (let i=0; i<header_bg.length; i++) {
-		header_bg[i].style.opacity = String( window.scrollY * scrollStrength * (1366/window.innerWidth) );
-		if (Number(header_bg[i].style.opacity) > 1) header_bg[i].style.opacity = '1.0';
-	}
-})
+document.addEventListener('scroll', (e) => { hasScrolled = true; })
 
 	// Hamburger Bar
 hambar.addEventListener('click', (e) => {
@@ -270,47 +241,20 @@ hambar.addEventListener('click', (e) => {
 	else mobile_navbar.style.right = "-12em";
 })
 
-	// Dropdown Menus
-		// Desktop
-dropdown_triggers[0].addEventListener('mouseover', (e) => {
-	dropdown_stats.index = 0;
-	dropdown_stats.current_length = Number(dropdown_menus[dropdown_stats.index].style.height.slice(0, dropdown_menus[dropdown_stats.index].style.height.length-2));
-	dropdown_stats.new_length = 280;
-	dropdown_stats.bg_extra_length = 10;
-	dropdown_stats.isHeight = true;
-	dropdown_stats.isDropdowning = true;})
-
-dropdown_triggers[0].addEventListener('mouseout', (e) => {
-	dropdown_stats.index = 0;
-	dropdown_stats.current_length = Number(dropdown_menus[dropdown_stats.index].style.height.slice(0, dropdown_menus[dropdown_stats.index].style.height.length-2));
-	dropdown_stats.new_length = 0;
-	dropdown_stats.bg_extra_length = 10;
-	dropdown_stats.isHeight = true;
-	dropdown_stats.isDropdowning = true;})
-
-		// Mobile
-dropdown_triggers[1].addEventListener('touchstart', (e) => {
-	dropdown_stats.index = 1;
-	dropdown_stats.current_length = Number(dropdown_menus[dropdown_stats.index].style.height.slice(0, dropdown_menus[dropdown_stats.index].style.height.length-2));
-	dropdown_stats.new_length = 170;
-	dropdown_stats.bg_extra_length = 10;
-	dropdown_stats.isHeight = false;
-	dropdown_stats.isDropdowning = true;})
-
-dropdown_triggers[1].addEventListener('touchcancel', (e) => {
-	dropdown_stats.index = 1;
-	dropdown_stats.current_length = Number(dropdown_menus[dropdown_stats.index].style.height.slice(0, dropdown_menus[dropdown_stats.index].style.height.length-2));
-	dropdown_stats.new_length = 0;
-	dropdown_stats.bg_extra_length = 10;
-	dropdown_stats.isHeight = false;
-	dropdown_stats.isDropdowning = true;})
+	// Galleries
+for (let i=0; i<galleries.length; i++) {
+	// galleries[i].addEventListener('scroll', (e) => {
+	// 	let gallery = galleries[i];
+	// 	gallery.scrollLeft += 10;
+	// 	console.log('')
+	// })
+}
 
 	// Pear Animation End
 pearto.src.addEventListener('animationend', (e) => {
-
 	if (pearto.src.style.animationName == "jump-in-out") {					// Jump-In-Out
-		if (pearto.isActive) {
-			pearto.isActive = false;
+		if (pearto.src.style.animationDirection == "reverse") {
+			resetPearAnimation();
 			pearto.src.style.animationName = "idle-bottom";
 		}
 		else pearto.isActive = true;

@@ -1,1 +1,122 @@
-writing.html
+<!DOCTYPE html>
+<html>
+<head>
+	<title>My Portfolio</title>
+	<meta charset="utf-8" name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="keywords" content="">
+    <meta name="description" content="Portfolio Website">
+    <link rel="stylesheet" type="text/css" href='../stylesheets/style_art-projects.css'>
+</head>
+<body>
+	<header id="header">												<!-- Header -->
+		<div class="header_bg"></div>
+
+		<nav id="navbar">
+			<div><a href="../index.html#about">About</a></div>
+			<div><a href="../index.html#education">Education</a></div>
+			<div><a href="../index.html#career-interests">Career Interests</a></div>
+			<div id="projects" class="dropdown-trigger">
+				<span>Projects</span>
+				<div class="dropdown-menu">
+					<div><a href="presentations.html">Presentations</a></div>
+					<div><a href="writing.html">Writing</a></div>
+					<div><a href="designs.html">Designs</a></div>
+
+					<div><a href="art-projects.html">Art Projects</a></div>
+					<div><a href="programming.html">Programming</a></div>
+					<div class="header_bg"></div>
+				</div>
+			</div>
+			<div><a onclick="togglePear()">Pearto</a></div>
+		</nav>
+
+		<div id="hambar">
+  			<div></div>		<div></div>		<div></div>
+		</div>
+
+		<nav id="mobile_navbar">
+			<div><a href="../index.html#about">About</a></div>
+			<div><a href="../index.html#education">Education</a></div>
+			<div><a href="../index.html#career-interests">Career Interests</a></div>
+			<div id="mobile_projects" class="dropdown-trigger">
+				<span>Projects</span>
+				<div class="dropdown-menu">
+					<div><a href="presentations.html">Presentations</a></div>
+					<div><a href="writing.html">Writing</a></div>
+					<div><a href="designs.html">Designs</a></div>
+
+					<div><a href="art-projects.html">Art Projects</a></div>
+					<div><a href="programming.html">Programming</a></div>
+					<div class="header_bg"></div>
+				</div>
+			</div>
+			<div><a onclick="togglePear()">Pearto</a></div>
+		</nav>
+
+		<div id="pearto" onclick="pearto.timer = 0;">
+			<img src="../images/tetos/1.png">
+		</div>
+	</header>
+
+	<section id="art-projects" class="container">
+		<h1>Writing</h1>
+		<ul>
+			<li>					
+				<h2>Mechanical</h2>
+				<div class="art-images">
+					<a href="../images/art-projects/raizen.png" target="_blank">
+						<img src="../images/art-projects/raizen.png">
+					</a>
+					<a href="../images/art-projects/aevis.png" target="_blank">
+						<img src="../images/art-projects/aevis.png">
+					</a>
+					<a href="../images/art-projects/aevis_jet.png" target="_blank">
+						<img src="../images/art-projects/aevis_jet.png">
+					</a>
+					<a href="../images/art-projects/aevis_portrait.png" target="_blank">
+						<img src="../images/art-projects/aevis_portrait.png">
+					</a>
+				</div>
+				
+			</li>
+			<li>
+				<h2>Steampunk</h2>
+				<div class="art-images">
+					<a href="../images/art-projects/cozey.png" target="_blank">
+						<img src="../images/art-projects/cozey.png"></img>
+					</a>
+					<a href="../images/art-projects/riley.png" target="_blank">
+						<img src="../images/art-projects/riley.png"></img>
+					</a>
+					<a href="../images/art-projects/riley_painting.png" target="_blank">
+						<img src="../images/art-projects/riley_painting.png"></img>
+					</a>
+					<a href="../images/art-projects/riley_sit.png" target="_blank">
+						<img src="../images/art-projects/riley_sit.png"></img>
+					</a>
+				</div>
+					
+			</li>
+			<li>
+				<h2>Landscapes</h2>
+				<div class="art-images">
+					<a href="../images/art-projects/missioncomplete.png" target="_blank">
+						<img src="../images/art-projects/missioncomplete.png"></img>
+					</a>
+					<a href="../images/art-projects/mines.png" target="_blank">
+						<img src="../images/art-projects/mines.png"></img>
+					</a>
+					<a href="../images/art-projects/wayhome.png" target="_blank">
+						<img src="../images/art-projects/wayhome.png"></img>
+					</a>
+					<a href="../images/art-projects/airdrop.png" target="_blank">
+						<img src="../images/art-projects/airdrop.png"></img>
+					</a>
+				</div>
+			</li>
+		</ul>
+	</section>
+
+	<script src="../scripts/art-projects_script.js"></script>
+</body>
+</html>
