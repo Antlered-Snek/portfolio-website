@@ -29,12 +29,16 @@ pearto.src.style.right = "200px";
 
 	// Galleries
 let galleries = document.getElementsByClassName("gallery");
+let gallery_inputs = document.getElementsByClassName("gallery-input");
+let gallery_index = null;
+let forced_scrollSpeed = 15;
+
 for (let i=0; i<galleries.length; i++) {
 	galleries[i].scrollLeft += 20;
 }
 
 	// Scroll Function
-let hasScrolled = false;
+let scrollY_old = window.scrollY;
 
 
 
@@ -50,33 +54,52 @@ function moveGalleries_linked() {
 		let len = gallery.getElementsByTagName('a').length;
 
 		let scrollLeft_old = gallery.scrollLeft;
-		let img_length = 800;
-		let scrollSpeed = ((window.innerWidth > 780) * 1) + ((window.innerWidth <= 780) * 0.5);
+		let img_length = 400;
+		let scrollSpeed = 1;
 
 		// Scroll
+		if (gallery_index == i) scrollSpeed = forced_scrollSpeed;
 		gallery.scrollLeft += scrollSpeed;
 			
 			// Reorder
-		if ( gallery.scrollLeft < scrollLeft_old+scrollSpeed ) {
-				// Add Link
-			let newLink = document.createElement('a');
-			newLink.href = gallery.getElementsByTagName('a')[0].href;
-			newLink.target = "_blank";
+		if (gallery.scrollLeft != scrollLeft_old + scrollSpeed) {
+			if	(scrollSpeed >= 1) {			// Left to Right
+					// Add Link
+				let newLink = document.createElement('a');
+				newLink.href = gallery.getElementsByTagName('a')[0].href;
+				newLink.target = "_blank";
 
-				// Add Image
-			let newImg = document.createElement('img');
-			newImg.src = gallery.getElementsByTagName('a')[0].getElementsByTagName('img')[0].src;
+					// Add Image
+				let newImg = document.createElement('img');
+				newImg.src = gallery.getElementsByTagName('a')[0].children[0].src;
 
-				// Insert Both
-			newLink.appendChild(newImg);
-			gallery.appendChild(newLink);
-			
-				// Remove
-			gallery.getElementsByTagName('a')[0].remove();
-			gallery.scrollLeft -= img_length;
+					// Insert Both
+				newLink.appendChild(newImg);
+				gallery.appendChild(newLink);
+				
+					// Remove
+				gallery.getElementsByTagName('a')[0].remove();
+				gallery.scrollLeft -= img_length + 10;
+			}
+			else if (scrollSpeed <= 1) {		// Right to Left
+					// Add Link
+				let newLink = document.createElement('a');
+				newLink.href = gallery.getElementsByTagName('a')[len-1].href;
+				newLink.target = "_blank";
+
+					// Add Image
+				let newImg = document.createElement('img');
+				newImg.src = gallery.getElementsByTagName('a')[len-1].children[0].src;
+
+					// Insert Both
+				newLink.appendChild(newImg);
+				gallery.insertBefore(newLink, gallery.getElementsByTagName('a')[0]);
+				
+					// Remove
+				gallery.getElementsByTagName('a')[len].remove();
+				gallery.scrollLeft += img_length + 10;
+			}
 		}
-
-		if (i == galleries.length-2) console.log(gallery.scrollLeft)
 	}}
 
 function togglePear() {
@@ -203,7 +226,7 @@ function scrollFunc() {
 	}
 
 	// Stop
-	hasScrolled = false;
+	scrollY_old = window.scrollY;
 }
 
 
@@ -218,7 +241,7 @@ function scrollFunc() {
 function animate() {
 	moveGalleries_linked();
 	if (pearto.isActive) pear();
-	if (hasScrolled) scrollFunc();
+	if (scrollY_old != window.scrollY) scrollFunc();
 
 	requestAnimationFrame(animate);
 }
@@ -232,22 +255,41 @@ requestAnimationFrame(animate);
 
 
 // Event Listeners
-	// Scroll Function
-document.addEventListener('scroll', (e) => { hasScrolled = true; })
-
 	// Hamburger Bar
 hambar.addEventListener('click', (e) => {
 	if (mobile_navbar.style.right == "-12em") mobile_navbar.style.right = "0px";
 	else mobile_navbar.style.right = "-12em";
 })
 
-	// Galleries
-for (let i=0; i<galleries.length; i++) {
-	// galleries[i].addEventListener('scroll', (e) => {
-	// 	let gallery = galleries[i];
-	// 	gallery.scrollLeft += 10;
-	// 	console.log('')
-	// })
+	// Gallery Inputs
+for (let i=0; i<gallery_inputs.length; i++) {
+		// Desktop
+	gallery_inputs[i].children[0].addEventListener('mousedown', (e) => {	// Left Button
+		gallery_index = i;
+		forced_scrollSpeed = -15;
+	})
+	gallery_inputs[i].children[1].addEventListener('mousedown', (e) => {	// Right Button
+		gallery_index = i;
+		forced_scrollSpeed = 15;
+	})
+
+	gallery_inputs[i].addEventListener('mouseup', (e) => {					// Off
+		gallery_index = null;
+	})
+
+		// Mobile
+	gallery_inputs[i].children[0].addEventListener('touchstart', (e) => {	// Left Button
+		gallery_index = i;
+		forced_scrollSpeed = -5;
+	})
+	gallery_inputs[i].children[1].addEventListener('touchstart', (e) => {	// Right Button
+		gallery_index = i;
+		forced_scrollSpeed = 5;
+	})
+
+	gallery_inputs[i].addEventListener('touchend', (e) => {					// Off
+		gallery_index = null;
+	})
 }
 
 	// Pear Animation End
