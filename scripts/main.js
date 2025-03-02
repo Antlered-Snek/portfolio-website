@@ -37,7 +37,7 @@ pearto.src.style.animationFillMode = "both";
 pearto.src.style.right = "200px";
 
 	// Scroll Function
-let hasScrolled = false;
+let scrollY_old = window.scrollY;
 
 
 
@@ -201,7 +201,7 @@ function scrollFunc() {
 	profile_text2.style.top = String(-window.scrollY * 0.8) +"px";
 
 	// Stop
-	hasScrolled = false;
+	scrollY_old = window.scrollY;
 }
 
 
@@ -212,7 +212,7 @@ function scrollFunc() {
 function animate() {
 	moveGalleries();
 	if (pearto.isActive) pear();
-	if (hasScrolled) scrollFunc();
+	if (scrollY_old != window.scrollY) scrollFunc();
 
 	requestAnimationFrame(animate);}
 requestAnimationFrame(animate);
@@ -224,9 +224,6 @@ requestAnimationFrame(animate);
 
 
 // Event Listeners
-	// Scroll Function
-document.addEventListener('scroll', (e) => { hasScrolled = true; })
-
 	// Hamburger Bar
 hambar.addEventListener('click', (e) => {
 	if (mobile_navbar.style.right == "-12em") mobile_navbar.style.right = "0px";

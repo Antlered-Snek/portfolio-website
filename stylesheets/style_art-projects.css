@@ -28,7 +28,6 @@ html { scroll-behavior: smooth; }
 
 body {
 	font-family: "Helvetica";
-	height: 4000px;
 	margin: 0;
 	background-color: black;
 	color: white;
@@ -39,6 +38,14 @@ img {
 	height: auto;
 	aspect-ratio: 1 / 1;
 	object-fit: cover;
+}
+
+footer img {
+	aspect-ratio: auto;
+	width: 100%;
+
+	position: relative;
+	top: 10px;
 }
 
 h1 {
@@ -61,6 +68,22 @@ h2 {
 
 h3 {
 	font-size: clamp(1.2rem, 2.1vw + 1.2rem, 4rem);
+}
+
+h4 {
+	position: relative;
+	top: -20px;
+	color: rgb(180, 180, 180);
+}
+
+h4 a {
+	color: rgb(220, 220, 220);
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+ul {
+	padding-left: 0px;
 }
 
 li {
@@ -126,6 +149,7 @@ header > .header_bg {
 }
 
 #navbar > div {
+	cursor: pointer;
 	height: 100%;
 	padding-left: 10px;
 	padding-right: 10px;
@@ -389,7 +413,15 @@ header > .header_bg {
 }
 
 /* Art Projects */
-.art-images img { width: 40% }
+.art-images img { width: 33% }
+.landscape img { width: 40%; aspect-ratio: 16 / 9; }
+
+.art-images video {
+	aspect-ratio: 16 / 9;
+	width: 40%;
+	height: auto;
+}
+
 
 
 

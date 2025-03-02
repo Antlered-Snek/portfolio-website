@@ -1,1 +1,138 @@
-programming.html
+<!DOCTYPE html>
+<html>
+<head>
+	<title>My Portfolio</title>
+	<meta charset="utf-8" name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="keywords" content="">
+    <meta name="description" content="Portfolio Website">
+    <link rel="stylesheet" type="text/css" href='../stylesheets/style_programming.css'>
+</head>
+<body>
+	<header id="header">												<!-- Header -->
+		<div class="header_bg"></div>
+
+		<nav id="navbar">
+			<div><a href="../index.html#about">About</a></div>
+			<div><a href="../index.html#education">Education</a></div>
+			<div><a href="../index.html#career-interests">Career Interests</a></div>
+			<div id="projects" class="dropdown-trigger">
+				<span>Projects</span>
+				<div class="dropdown-menu">
+					<div><a href="presentations.html">Presentations</a></div>
+					<div><a href="writing.html">Writing</a></div>
+					<div><a href="designs.html">Designs</a></div>
+
+					<div><a href="art-projects.html">Art Projects</a></div>
+					<div><a href="programming.html">Programming</a></div>
+					<div class="dropdown_bg"></div>
+				</div>
+			</div>
+			<div><a onclick="togglePear()">Pearto</a></div>
+		</nav>
+
+		<div id="hambar">
+  			<div></div>		<div></div>		<div></div>
+		</div>
+
+		<nav id="mobile_navbar">
+			<div><a href="../index.html#about">About</a></div>
+			<div><a href="../index.html#education">Education</a></div>
+			<div><a href="../index.html#career-interests">Career Interests</a></div>
+			<div id="mobile_projects" class="dropdown-trigger">
+				<span>Projects</span>
+				<div class="dropdown-menu">
+					<div><a href="presentations.html">Presentations</a></div>
+					<div><a href="writing.html">Writing</a></div>
+					<div><a href="designs.html">Designs</a></div>
+
+					<div><a href="art-projects.html">Art Projects</a></div>
+					<div><a href="programming.html">Programming</a></div>
+					<div class="dropdown_bg"></div>
+				</div>
+			</div>
+			<div><a onclick="togglePear()">Pearto</a></div>
+		</nav>
+
+		<div id="pearto" onclick="pearto.timer = 0;">
+			<img src="../images/tetos/1.png">
+		</div>
+	</header>
+
+	<section id="programming" class="container">
+		<h1>Programming Projects</h1>
+		<h4>I started learning how to program in mid-2023<br>So far I've been able to program in Python, C++, Javascript, and GDScript
+		</h4>
+		<ul>
+			<li>
+				<h2>Matrix Calculator</h2>
+				<a href="https://www.sololearn.com/en/compiler-playground/cD9Tn2ioHk7H" target="_blank">
+					<img src="../images/programming/matrix_calculator.png">
+				</a>
+				<p>A calculator made in <b>Python</b> for calculating matrices<br><br>I made this around the time I was learning matrices at school, and added features along the way<br>as I learned new material and ways to use matrices in class<br><br>It was made on my phone and published on the website where I learned most the basics in programming</p>
+			</li>
+			<li>
+				<h2>My Little Painter</h2>
+				<a href="https://antlered-snek.github.io/My_Little_Painter/" target="_blank">
+					<video width="876" height="459" autoplay muted loop>
+						<source src="../images/programming/my_little_painter.mp4" type="video/mp4">
+					</video>
+				</a>
+				<p>A basic art program I made for an <b>English</b> group assignment<br><br>The assignment was to make a <b>Procedure Presentation</b> about anything, so I chose this opportunity<br>to further test my abilities of pushing <b>Javascript</b> and <b>HTML Canvas</b> to its limits<br><br>My team kindly agreed and allowed me to do my thing, while they're in charge of making the presentation</p>
+			</li>
+			<li>
+				<h2>Mechanized Devil Hunter</h2>
+				<h4>Work In Progress || Demo Published</h4>
+				<a href="https://antlered-snek.github.io/Mechanized_Devil_Hunter/" target="_blank">
+					<video width="876" height="459" autoplay muted loop>
+						<source src="../images/programming/mechanized_devil_hunter.mp4" type="video/mp4">
+					</video>
+				</a>
+				<p>A top down shooter I made using <b>Javascript</b> and <b>HTML Canvas</b><br>A basic game with not so basic enemies as this was the first time I had the chance to program <b>enemy AI</b><br><br>I really focused on programming unique AI for each enemy encountered in this game, and recently just started to program more complex enemies<br><br>Making this game has been such an eye opener for me when it comes to working with videogame AI<br>I plan on finishing this game before <b>2026</b></p>
+			</li>
+			<li>
+				<h2>Battle Beats</h2>
+				<h4>Work In Progress || Demo Published</h4>
+				<a href="https://antlered-snek.github.io/Battle_Beats/" target="_blank">
+					<video width="876" height="459" autoplay muted loop>
+						<source src="../images/programming/battle_beats.mp4" type="video/mp4">
+					</video>
+				</a>
+				<p>A <b>"Fighting" Game</b> I made originally for a friend's birthday<br><br>It's the first game I've ever made using any medium, and for some reason I thought it would be<br>a good idea to start off using <b>Javascript</b> and <b>HTML Canvas</b> basically starting from scratch with no training wheels<br><br>Despite being labelled as a Fighting Game, it is very different from anything else in the genre<br>Mostly because I didn't know what I was doing at the time, but also because I wanted to make<br>every playable character feel like a <b>Metroidvania Boss</b><br><br>I plan on adding more characters, maps, and of course, actual <b>sounds</b> and <b>sprites</b> instead of simple placeholder cubes</p>
+			</li>
+			<li>
+				<h2>Brainrot Instagram Circle</h2>
+				<a href="https://antlered-snek.github.io/Circle_Gets_Bigger_By_2Percent_Every_Bounce/" target="_blank">
+					<video width="876" height="459" autoplay muted loop>
+						<source src="../images/programming/brainrot_instagram_circle.mp4" type="video/mp4">
+					</video>
+				</a>
+				<p>A very simple <b>joke website</b> based on a trend in the past that my friends thought was stupid<br><br>Its creation originally started as a joke during lunch when I told my friends that I could easily recreate this virus that has been plaging their <b>Instagram reels</b><br><br>I ended up making it because I thought it would be <b>funny</b></p>
+			</li>
+			<li>
+				<h2>Full Metal Days</h2>
+				<h4>Prototype</h4>
+				<a>
+					<video width="876" height="459" autoplay muted loop>
+						<source src="../images/programming/full_metal_days.mp4" type="video/mp4">
+					</video>
+				</a>
+				<p>A game made in the open source <b>Godot</b> game engine<br>The only game I've made so far that was made in a real game engine and not just me butchering <b>Javascript</b><br><br>This game will emphasize realism over everything, with smart AI that can <b>strategize mid-combat</b><br>It's an ambitious plan, it might not even be fun to play in end with how different it is from other games<br>despite taking some surface-level inspiration from the <b>Armored Core</b> Franchise<br><br>I plan to fully develop this game in the far future, so far I've gotten the broad strokes of the story written as well concept art, basic game mechanics, and smart AI groundwork</p>
+			</li>
+			<li>
+				<h2>Birthday Website</h2>
+				<a href="../pages/special/index.html" target="_blank">
+					<video width="876" height="459" autoplay muted loop>
+						<source src="../images/programming/birthday_website.mp4" type="video/mp4">
+					</video>
+				</a>
+				<p>A website that my friend commissioned me to make for their other friend's birthday<br>For <b>privacy reasons</b>, the version I have in my portfolio is a modified version without the customer's name and photos<br><br>This was the first <b>"true"</b> website I've ever made<br>Since the beginning, it was a challenge to format the website perfectly according to the customer's orders<br>Even after I finished, I soon realized that this website is <b>Broken</b> when viewed from a mobile device<br><br>However, I'm very proud of how it turned out. It's quite the eye-candy, packed with fun <b>minigames</b> and <b>easter eggs</b></p>
+			</li>
+		</ul>
+	</section>
+	<footer>
+		<img src="../images/footer.png">
+	</footer>
+
+	<script src="../scripts/programming_script.js"></script>
+</body>
+</html>

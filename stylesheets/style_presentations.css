@@ -41,6 +41,14 @@ img {
 	object-fit: cover;
 }
 
+footer img {
+	aspect-ratio: auto;
+	width: 100%;
+
+	position: relative;
+	top: 10px;
+}
+
 h1 {
 	font-size: clamp(5rem, 4.1vw + 3rem, 10rem);
 	margin: 3vw;
@@ -145,6 +153,7 @@ header > .header_bg {
 }
 
 #navbar > div {
+	cursor: pointer;
 	height: 100%;
 	padding-left: 10px;
 	padding-right: 10px;
@@ -492,10 +501,12 @@ header > .header_bg {
 .gallery-input span:hover {
 	background-color: rgba(255, 255, 255, 0.8);
 	border-radius: 25%;
-	transform: rotate(360deg);
 	box-shadow: 0px 0px 20px white;
 	color: black;
 }
+
+.gallery-input span:nth-child(1):hover { transform: rotate(360deg); }
+.gallery-input span:nth-child(2):hover { transform: rotate(-360deg); }
 
 
 
