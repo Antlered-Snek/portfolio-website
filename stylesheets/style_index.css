@@ -823,12 +823,13 @@ header > .header_bg {
 		"text1		text2";
 	
 		margin-left: 0px;
-		font-size: clamp(20px, 4vw, 40px);
+		font-size: clamp(15px, 3.4vw, 40px);
 	}
 
     .gallery img {
     	width: 95vw;
     	height: auto;
+    	filter: brightness(50%);
     }
 
     /* Career Interests */

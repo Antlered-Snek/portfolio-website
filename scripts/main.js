@@ -215,6 +215,7 @@ function animate() {
 	if (scrollY_old != window.scrollY) scrollFunc();
 
 	requestAnimationFrame(animate);}
+scrollFunc();
 requestAnimationFrame(animate);
 
 

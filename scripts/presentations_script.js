@@ -245,7 +245,7 @@ function animate() {
 
 	requestAnimationFrame(animate);
 }
-
+scrollFunc();
 requestAnimationFrame(animate);
 
 
