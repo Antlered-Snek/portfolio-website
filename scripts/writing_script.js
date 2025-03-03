@@ -6,7 +6,7 @@
 		// Header
 let header_bg = document.getElementsByClassName("header_bg");
 let hambar = document.getElementById("hambar");
-let mobil_navbar = document.getElementById("mobil_navbar"); mobile_navbar.style.right = "-12em";
+let mobile_navbar = document.getElementById("mobile_navbar"); mobile_navbar.style.right = "-12em";
 
 	// Pear
 let pearto = {
